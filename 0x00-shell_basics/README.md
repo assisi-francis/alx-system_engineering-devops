@@ -1,0 +1,1 @@
+0-current_working_directory script print working directory
