@@ -3,6 +3,12 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
+
+echo "Hello World!" > /etc/nginx/html/index.html
+
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+
 # code to create error page and add a redirect for error 404
 echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
 
