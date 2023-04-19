@@ -3,17 +3,17 @@
 
 func ()
 {
-	res="$(dig "$1"."$2" | grep -A1 'ANSWER SECTION:' | tail -1)"
+	res=$(dig "$1"."$2" | grep -A1 "ANSWER SECTION:" | tail -1)
 	echo "$2 $res" | awk '{print "The subdomain " $1 " is a " $5 " record and points to " $6}'
 }
 
-if [ "$#" - eq 1 ]
+if [ "$#" -eq 1 ]
 then
-	func "$1" "www"
-	func "$1" "lb-01"
-	func "$1" "web-01"
-	func "$1" "web-02"
+  func "$1" "www"
+  func "$1" "lb-01"
+  func "$1" "web-01"
+  func "$1" "web-02"
 elif [ "$#" -eq 2 ]
 then
-	func "$1" "$2"
+  func "$1" "$2"
 fi
