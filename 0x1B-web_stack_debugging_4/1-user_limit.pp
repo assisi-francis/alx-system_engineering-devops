@@ -1,11 +1,9 @@
-# fix increaseLimit err msg
- 
-exec { 'sed -i "s/holberton hard nofile 5/holberton hard nofile 5000/" /etc/security/limits.conf':
-  path => '/usr/bin:/usr/sbin:/bin',
+# change user limit using puppet manifest
+
+exec { 'change_value_to_50':
+  command => "/bin/sed -i 's/5/50/g' /etc/security/limits.conf",
 }
-exec { 'sed -i "s/holberton soft nofile 4/holberton soft nofile 4000/" /etc/security/limits.conf':
-  path => '/usr/bin:/usr/sbin:/bin',
-}
--> exec {'refresh conf':
-  command => '/sbin/sysctl -p',
+
+exec { 'change_value_to_40':
+  command => "/bin/sed -i 's/4/40/g' /etc/security/limits.conf",
 }
